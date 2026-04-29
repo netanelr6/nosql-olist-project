@@ -1,0 +1,11 @@
+# Ignore Kaggle API credentials
+kaggle.json
+
+# Ignore downloaded dataset files
+*.csv
+data/
+
+# Ignore Python virtual environment and cache
+venv/
+__pycache__/
+.env
