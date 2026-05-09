@@ -4,6 +4,11 @@
 This project is part of the Advanced Database Technologies (NoSQL) course at Ben-Gurion University. 
 The goal of this project is to model and analyze the Brazilian E-Commerce Public Dataset by Olist, along with its Marketing Funnel extension.
 
+
+## ERD overview
+[![ERD Diagram](./OlistERD.svg)](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/OlistERD.drawio)
+
+
 ## Phase 1: Relational Modeling (PostgreSQL)
 In the first phase, we established a solid relational foundation:
 - Downloaded the raw datasets using the Kaggle API.
