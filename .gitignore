@@ -4,6 +4,8 @@ kaggle.json
 # Ignore downloaded dataset files
 *.csv
 data/
+direct CSV ZIP/
+Draft bin/
 
 # Ignore Python virtual environment and cache
 venv/

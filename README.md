@@ -6,7 +6,9 @@ The goal of this project is to model and analyze the Brazilian E-Commerce Public
 
 
 ## ERD overview
-[![ERD Diagram](./OlistERD.svg)](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/OlistERD.drawio)
+[![ERD Diagram](./OlistERD.drawio.svg)](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/OlistERD.drawio)
+
+[👁️ לצפייה בתרשים](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/OlistERD.drawio) | [✏️ לעריכת התרשים](https://app.diagrams.net/#Hnetanelr6%2Fnosql-olist-project%2Fmain%2FOlistERD.drawio)
 
 
 ## Phase 1: Relational Modeling (PostgreSQL)
