@@ -1,0 +1,41 @@
+#שם משתמש: admin
+# סיסמה: pass
+# mongodb://localhost:27017
+# http://localhost:8081
+
+services:
+  # --- עולם ה-NoSQL ---
+  mongodb:
+    image: mongo:latest
+    container_name: olist_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db_data_mongo:/data/db
+    restart: unless-stopped
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: olist_mongo_express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
+  # --- עולם ה-SQL ---
+  postgres:
+    image: postgres:15
+    container_name: olist_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: olist_sql
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db_data_sql:/var/lib/postgresql/data
+    restart: unless-stopped

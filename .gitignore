@@ -6,8 +6,12 @@ kaggle.json
 data/
 direct CSV ZIP/
 Draft bin/
+db_data/ 
+db_data_sql/
+db_data_mongo/
 
 # Ignore Python virtual environment and cache
 venv/
 __pycache__/
 .env
+

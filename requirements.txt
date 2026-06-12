@@ -1,0 +1,5 @@
+pandas
+pymongo
+SQLAlchemy
+psycopg2-binary
+kaggle
