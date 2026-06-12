@@ -32,6 +32,9 @@ In the first phase, we established a solid relational foundation:
 - Designed an embedded document schema containing 4 collections: `orders`, `sellers`, `products`, and `reviews`.
 - Programmed a Python-based pipeline that reads the SQL database, denormalizes the relations, embeds relevant items, and populates MongoDB.
 
+#### NoSQL ERD Diagram
+[👁️ לצפייה בתרשים ה-NoSQL](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/diagrams/OlistNoSQLERD.drawio) | [✏️ לעריכת תרשים ה-NoSQL](https://app.diagrams.net/#Hnetanelr6%2Fnosql-olist-project%2Fmain%2Fdiagrams%2FOlistNoSQLERD.drawio)
+
 ---
 
 ## Docker Architecture
