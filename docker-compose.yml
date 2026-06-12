@@ -1,7 +1,9 @@
-#שם משתמש: admin
-# סיסמה: pass
+# user: admin
+# pasword : pass
 # mongodb://localhost:27017
 # http://localhost:8081
+# http://localhost:8082
+
 
 services:
   # --- NoSQL Database (MongoDB) ---
