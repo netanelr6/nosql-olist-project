@@ -1,0 +1,679 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="850" viewBox="0 0 1100 850" style="background-color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.1" flood-color="#000000" />
+    </filter>
+    <!-- Arrow marker -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#1A73E8" />
+    </marker>
+    <!-- Dot marker -->
+    <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
+      <circle cx="5" cy="5" r="3" fill="#1A73E8" />
+    </marker>
+  </defs>
+
+  <!-- Background grid pattern (subtle) -->
+  <rect width="100%" height="100%" fill="#FCFCFD" />
+  <g stroke="#E8EAED" stroke-width="1">
+    <path d="M 0 50 L 1100 50 M 0 100 L 1100 100 M 0 150 L 1100 150 M 0 200 L 1100 200 M 0 250 L 1100 250 M 0 300 L 1100 300 M 0 350 L 1100 350 M 0 400 L 1100 400 M 0 450 L 1100 450 M 0 500 L 1100 500 M 0 550 L 1100 550 M 0 600 L 1100 600 M 0 650 L 1100 650 M 0 700 L 1100 700 M 0 750 L 1100 750 M 0 800 L 1100 800" />
+    <path d="M 50 0 L 50 850 M 100 0 L 100 850 M 150 0 L 150 850 M 200 0 L 200 850 M 250 0 L 250 850 M 300 0 L 300 850 M 350 0 L 350 850 M 400 0 L 400 850 M 450 0 L 450 850 M 500 0 L 500 850 M 550 0 L 550 850 M 600 0 L 600 850 M 650 0 L 650 850 M 700 0 L 700 850 M 750 0 L 750 850 M 800 0 L 800 850 M 850 0 L 850 850 M 900 0 L 900 850 M 950 0 L 950 850 M 1000 0 L 1000 850 M 1050 0 L 1050 850" />
+  </g>
+
+  <!-- Collection: orders -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="60" width="400" height="524" rx="8" fill="#F8F9FA" stroke="#BDC1C6" stroke-width="1" />
+    <!-- Header -->
+    <path d="M 61 92 L 61 68 A 8 8 0 0 1 68 60 L 452 60 A 8 8 0 0 1 459 68 L 459 92 Z" fill="#1A73E8" />
+    <text x="260.0" y="82" fill="#FFFFFF" font-size="15" font-weight="bold" text-anchor="middle">ORDERS</text>
+  </g>
+
+    <!-- Row 0: _id -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="107" fill="#D93025" font-size="11" font-weight="bold">PK</text>
+      
+      <!-- Name column -->
+      <text x="115" y="107" fill="#202124" font-size="12" font-weight="bold">_id</text>
+      <!-- Type column -->
+      <text x="445" y="107" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="113" x2="452" y2="113" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 1: order_status -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="129" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="129" fill="#202124" font-size="12" font-weight="normal">order_status</text>
+      <!-- Type column -->
+      <text x="445" y="129" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="135" x2="452" y2="135" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 2: purchase_timestamp -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="151" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="151" fill="#202124" font-size="12" font-weight="normal">purchase_timestamp</text>
+      <!-- Type column -->
+      <text x="445" y="151" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="157" x2="452" y2="157" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 3: delivered_customer_date -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="173" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="173" fill="#202124" font-size="12" font-weight="normal">delivered_customer_date</text>
+      <!-- Type column -->
+      <text x="445" y="173" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="179" x2="452" y2="179" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 4: estimated_delivery_date -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="195" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="195" fill="#202124" font-size="12" font-weight="normal">estimated_delivery_date</text>
+      <!-- Type column -->
+      <text x="445" y="195" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="201" x2="452" y2="201" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 5: customer -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="217" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="217" fill="#202124" font-size="12" font-weight="normal">customer</text>
+      <!-- Type column -->
+      <text x="445" y="217" fill="#5F6368" font-size="11" text-anchor="end">Object</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="223" x2="452" y2="223" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 6:   customer_id -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="239" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="235" x2="130" y2="235" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="224" x2="120" y2="235" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="239" fill="#202124" font-size="12" font-weight="normal">customer_id</text>
+      <!-- Type column -->
+      <text x="445" y="239" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="245" x2="452" y2="245" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 7:   unique_id -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="261" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="257" x2="130" y2="257" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="246" x2="120" y2="257" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="261" fill="#202124" font-size="12" font-weight="normal">unique_id</text>
+      <!-- Type column -->
+      <text x="445" y="261" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="267" x2="452" y2="267" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 8:   zip_code_prefix -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="283" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="279" x2="130" y2="279" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="268" x2="120" y2="279" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="283" fill="#202124" font-size="12" font-weight="normal">zip_code_prefix</text>
+      <!-- Type column -->
+      <text x="445" y="283" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="289" x2="452" y2="289" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 9:   city -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="305" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="301" x2="130" y2="301" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="290" x2="120" y2="301" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="305" fill="#202124" font-size="12" font-weight="normal">city</text>
+      <!-- Type column -->
+      <text x="445" y="305" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="311" x2="452" y2="311" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 10:   state -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="327" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="323" x2="130" y2="323" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="312" x2="120" y2="323" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="327" fill="#202124" font-size="12" font-weight="normal">state</text>
+      <!-- Type column -->
+      <text x="445" y="327" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="333" x2="452" y2="333" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 11: items -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="349" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="349" fill="#202124" font-size="12" font-weight="normal">items</text>
+      <!-- Type column -->
+      <text x="445" y="349" fill="#5F6368" font-size="11" text-anchor="end">Array&lt;Object&gt;</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="355" x2="452" y2="355" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 12:   product_id -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="371" fill="#D93025" font-size="11" font-weight="bold">FK</text>
+      <line x1="120" y1="367" x2="130" y2="367" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="356" x2="120" y2="367" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="371" fill="#202124" font-size="12" font-weight="normal">product_id</text>
+      <!-- Type column -->
+      <text x="445" y="371" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="377" x2="452" y2="377" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 13:   seller_id -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="393" fill="#D93025" font-size="11" font-weight="bold">FK</text>
+      <line x1="120" y1="389" x2="130" y2="389" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="378" x2="120" y2="389" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="393" fill="#202124" font-size="12" font-weight="normal">seller_id</text>
+      <!-- Type column -->
+      <text x="445" y="393" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="399" x2="452" y2="399" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 14:   shipping_limit_date -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="415" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="411" x2="130" y2="411" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="400" x2="120" y2="411" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="415" fill="#202124" font-size="12" font-weight="normal">shipping_limit_date</text>
+      <!-- Type column -->
+      <text x="445" y="415" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="421" x2="452" y2="421" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 15:   price -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="437" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="433" x2="130" y2="433" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="422" x2="120" y2="433" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="437" fill="#202124" font-size="12" font-weight="normal">price</text>
+      <!-- Type column -->
+      <text x="445" y="437" fill="#5F6368" font-size="11" text-anchor="end">Double</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="443" x2="452" y2="443" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 16:   freight_value -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="459" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="455" x2="130" y2="455" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="444" x2="120" y2="455" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="459" fill="#202124" font-size="12" font-weight="normal">freight_value</text>
+      <!-- Type column -->
+      <text x="445" y="459" fill="#5F6368" font-size="11" text-anchor="end">Double</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="465" x2="452" y2="465" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 17: payments -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="481" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="481" fill="#202124" font-size="12" font-weight="normal">payments</text>
+      <!-- Type column -->
+      <text x="445" y="481" fill="#5F6368" font-size="11" text-anchor="end">Array&lt;Object&gt;</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="487" x2="452" y2="487" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 18:   payment_sequential -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="503" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="499" x2="130" y2="499" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="488" x2="120" y2="499" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="503" fill="#202124" font-size="12" font-weight="normal">payment_sequential</text>
+      <!-- Type column -->
+      <text x="445" y="503" fill="#5F6368" font-size="11" text-anchor="end">Int</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="509" x2="452" y2="509" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 19:   payment_type -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="525" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="521" x2="130" y2="521" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="510" x2="120" y2="521" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="525" fill="#202124" font-size="12" font-weight="normal">payment_type</text>
+      <!-- Type column -->
+      <text x="445" y="525" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="531" x2="452" y2="531" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 20:   payment_installments -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="547" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="543" x2="130" y2="543" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="532" x2="120" y2="543" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="547" fill="#202124" font-size="12" font-weight="normal">payment_installments</text>
+      <!-- Type column -->
+      <text x="445" y="547" fill="#5F6368" font-size="11" text-anchor="end">Int</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="553" x2="452" y2="553" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 21:   payment_value -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="569" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="120" y1="565" x2="130" y2="565" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="120" y1="554" x2="120" y2="565" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="130" y="569" fill="#202124" font-size="12" font-weight="normal">payment_value</text>
+      <!-- Type column -->
+      <text x="445" y="569" fill="#5F6368" font-size="11" text-anchor="end">Double</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="575" x2="452" y2="575" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+  <!-- Collection: reviews -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="600" width="400" height="172" rx="8" fill="#F8F9FA" stroke="#BDC1C6" stroke-width="1" />
+    <!-- Header -->
+    <path d="M 61 632 L 61 608 A 8 8 0 0 1 68 600 L 452 600 A 8 8 0 0 1 459 608 L 459 632 Z" fill="#1A73E8" />
+    <text x="260.0" y="622" fill="#FFFFFF" font-size="15" font-weight="bold" text-anchor="middle">REVIEWS</text>
+  </g>
+
+    <!-- Row 0: _id -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="647" fill="#D93025" font-size="11" font-weight="bold">PK</text>
+      
+      <!-- Name column -->
+      <text x="115" y="647" fill="#202124" font-size="12" font-weight="bold">_id</text>
+      <!-- Type column -->
+      <text x="445" y="647" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="653" x2="452" y2="653" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 1: order_id -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="669" fill="#D93025" font-size="11" font-weight="bold">FK</text>
+      
+      <!-- Name column -->
+      <text x="115" y="669" fill="#202124" font-size="12" font-weight="normal">order_id</text>
+      <!-- Type column -->
+      <text x="445" y="669" fill="#5F6368" font-size="11" text-anchor="end">Array&lt;String&gt;</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="675" x2="452" y2="675" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 2: review_score -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="691" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="691" fill="#202124" font-size="12" font-weight="normal">review_score</text>
+      <!-- Type column -->
+      <text x="445" y="691" fill="#5F6368" font-size="11" text-anchor="end">Int</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="697" x2="452" y2="697" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 3: review_comment_title -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="713" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="713" fill="#202124" font-size="12" font-weight="normal">review_comment_title</text>
+      <!-- Type column -->
+      <text x="445" y="713" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="719" x2="452" y2="719" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 4: review_comment_message -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="735" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="735" fill="#202124" font-size="12" font-weight="normal">review_comment_message</text>
+      <!-- Type column -->
+      <text x="445" y="735" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="741" x2="452" y2="741" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 5: review_creation_date -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="757" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="757" fill="#202124" font-size="12" font-weight="normal">review_creation_date</text>
+      <!-- Type column -->
+      <text x="445" y="757" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="763" x2="452" y2="763" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+  <!-- Collection: products -->
+  <g filter="url(#shadow)">
+    <rect x="600" y="60" width="420" height="194" rx="8" fill="#F8F9FA" stroke="#BDC1C6" stroke-width="1" />
+    <!-- Header -->
+    <path d="M 601 92 L 601 68 A 8 8 0 0 1 608 60 L 1012 60 A 8 8 0 0 1 1019 68 L 1019 92 Z" fill="#1A73E8" />
+    <text x="810.0" y="82" fill="#FFFFFF" font-size="15" font-weight="bold" text-anchor="middle">PRODUCTS</text>
+  </g>
+
+    <!-- Row 0: _id -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="107" fill="#D93025" font-size="11" font-weight="bold">PK</text>
+      
+      <!-- Name column -->
+      <text x="655" y="107" fill="#202124" font-size="12" font-weight="bold">_id</text>
+      <!-- Type column -->
+      <text x="1005" y="107" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="113" x2="1012" y2="113" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 1: product_category_name -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="129" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="655" y="129" fill="#202124" font-size="12" font-weight="normal">product_category_name</text>
+      <!-- Type column -->
+      <text x="1005" y="129" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="135" x2="1012" y2="135" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 2: product_category_name_english -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="151" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="655" y="151" fill="#202124" font-size="12" font-weight="normal">product_category_name_english</text>
+      <!-- Type column -->
+      <text x="1005" y="151" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="157" x2="1012" y2="157" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 3: product_weight_g -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="173" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="655" y="173" fill="#202124" font-size="12" font-weight="normal">product_weight_g</text>
+      <!-- Type column -->
+      <text x="1005" y="173" fill="#5F6368" font-size="11" text-anchor="end">Int</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="179" x2="1012" y2="179" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 4: product_length_cm -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="195" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="655" y="195" fill="#202124" font-size="12" font-weight="normal">product_length_cm</text>
+      <!-- Type column -->
+      <text x="1005" y="195" fill="#5F6368" font-size="11" text-anchor="end">Int</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="201" x2="1012" y2="201" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 5: product_height_cm -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="217" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="655" y="217" fill="#202124" font-size="12" font-weight="normal">product_height_cm</text>
+      <!-- Type column -->
+      <text x="1005" y="217" fill="#5F6368" font-size="11" text-anchor="end">Int</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="223" x2="1012" y2="223" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 6: product_width_cm -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="239" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="655" y="239" fill="#202124" font-size="12" font-weight="normal">product_width_cm</text>
+      <!-- Type column -->
+      <text x="1005" y="239" fill="#5F6368" font-size="11" text-anchor="end">Int</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="245" x2="1012" y2="245" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+  <!-- Collection: sellers -->
+  <g filter="url(#shadow)">
+    <rect x="600" y="380" width="420" height="260" rx="8" fill="#F8F9FA" stroke="#BDC1C6" stroke-width="1" />
+    <!-- Header -->
+    <path d="M 601 412 L 601 388 A 8 8 0 0 1 608 380 L 1012 380 A 8 8 0 0 1 1019 388 L 1019 412 Z" fill="#1A73E8" />
+    <text x="810.0" y="402" fill="#FFFFFF" font-size="15" font-weight="bold" text-anchor="middle">SELLERS</text>
+  </g>
+
+    <!-- Row 0: _id -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="427" fill="#D93025" font-size="11" font-weight="bold">PK</text>
+      
+      <!-- Name column -->
+      <text x="655" y="427" fill="#202124" font-size="12" font-weight="bold">_id</text>
+      <!-- Type column -->
+      <text x="1005" y="427" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="433" x2="1012" y2="433" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 1: city -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="449" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="655" y="449" fill="#202124" font-size="12" font-weight="normal">city</text>
+      <!-- Type column -->
+      <text x="1005" y="449" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="455" x2="1012" y2="455" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 2: state -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="471" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="655" y="471" fill="#202124" font-size="12" font-weight="normal">state</text>
+      <!-- Type column -->
+      <text x="1005" y="471" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="477" x2="1012" y2="477" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 3: zip_code_prefix -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="493" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="655" y="493" fill="#202124" font-size="12" font-weight="normal">zip_code_prefix</text>
+      <!-- Type column -->
+      <text x="1005" y="493" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="499" x2="1012" y2="499" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 4: onboarding_details -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="515" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="655" y="515" fill="#202124" font-size="12" font-weight="normal">onboarding_details</text>
+      <!-- Type column -->
+      <text x="1005" y="515" fill="#5F6368" font-size="11" text-anchor="end">Object (Optional)</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="521" x2="1012" y2="521" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 5:   mql_id -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="537" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="660" y1="533" x2="670" y2="533" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="660" y1="522" x2="660" y2="533" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="670" y="537" fill="#202124" font-size="12" font-weight="normal">mql_id</text>
+      <!-- Type column -->
+      <text x="1005" y="537" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="543" x2="1012" y2="543" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 6:   first_contact_date -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="559" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="660" y1="555" x2="670" y2="555" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="660" y1="544" x2="660" y2="555" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="670" y="559" fill="#202124" font-size="12" font-weight="normal">first_contact_date</text>
+      <!-- Type column -->
+      <text x="1005" y="559" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="565" x2="1012" y2="565" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 7:   origin -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="581" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="660" y1="577" x2="670" y2="577" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="660" y1="566" x2="660" y2="577" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="670" y="581" fill="#202124" font-size="12" font-weight="normal">origin</text>
+      <!-- Type column -->
+      <text x="1005" y="581" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="587" x2="1012" y2="587" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 8:   sr_id -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="603" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="660" y1="599" x2="670" y2="599" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="660" y1="588" x2="660" y2="599" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="670" y="603" fill="#202124" font-size="12" font-weight="normal">sr_id</text>
+      <!-- Type column -->
+      <text x="1005" y="603" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="609" x2="1012" y2="609" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+    <!-- Row 9:   business_segment -->
+    <g>
+      <!-- Key column -->
+      <text x="615" y="625" fill="none" font-size="11" font-weight="bold"></text>
+      <line x1="660" y1="621" x2="670" y2="621" stroke="#BDC1C6" stroke-width="1" />
+                <line x1="660" y1="610" x2="660" y2="621" stroke="#BDC1C6" stroke-width="1" />
+      <!-- Name column -->
+      <text x="670" y="625" fill="#202124" font-size="12" font-weight="normal">business_segment</text>
+      <!-- Type column -->
+      <text x="1005" y="625" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="608" y1="631" x2="1012" y2="631" stroke="#F1F3F4" stroke-width="1" />
+    </g>
+  <!-- Relationship: reviews.order_id -> orders._id -->
+  <g>
+    <!-- Start at reviews.order_id (x=460, y=669) -->
+    <path d="M 460 637 C 500 637, 500 107, 468 107" fill="none" stroke="#1A73E8" stroke-width="2" stroke-dasharray="2,2" marker-start="url(#dot)" marker-end="url(#arrow)" />
+    <text x="510" y="372" fill="#1A73E8" font-size="11" font-weight="bold" transform="rotate(-90 510 372)" text-anchor="middle">references order_id</text>
+  </g>
+
+  <!-- Relationship: orders.items.product_id -> products._id -->
+  <g>
+    <path d="M 460 371 C 520 371, 520 107, 592 107" fill="none" stroke="#1A73E8" stroke-width="2" stroke-dasharray="2,2" marker-start="url(#dot)" marker-end="url(#arrow)" />
+    <text x="530" y="239" fill="#1A73E8" font-size="11" font-weight="bold" transform="rotate(-77 530 239)" text-anchor="middle">references product_id</text>
+  </g>
+
+  <!-- Relationship: orders.items.seller_id -> sellers._id -->
+  <g>
+    <path d="M 460 393 C 510 393, 510 427, 592 427" fill="none" stroke="#1A73E8" stroke-width="2" stroke-dasharray="2,2" marker-start="url(#dot)" marker-end="url(#arrow)" />
+    <text x="525" y="410" fill="#1A73E8" font-size="11" font-weight="bold" text-anchor="middle">references seller_id</text>
+  </g>
+
+</svg>

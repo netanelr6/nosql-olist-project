@@ -4,8 +4,6 @@ This project is part of the **Advanced Database Technologies (NoSQL)** course at
 
 ---
 
-## Kaggle Dataset Links
-![alt text](diagrams/image.png)
 
 * **Brazilian E-Commerce Public Dataset by Olist**: [https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 * **Marketing Funnel by Olist**: [https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist](https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist)
@@ -20,9 +18,9 @@ In the first phase, we established a solid relational foundation:
 - Designed an Entity-Relationship Diagram (ERD) encompassing 11 tables.
 
 #### ERD Diagram
-[![ERD Diagram](./diagrams/OlistERD.drawio.svg)](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/OlistERD.drawio)
+[![ERD Diagram](./diagrams/OlistERD.png)](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/diagrams/OlistERD.drawio)
 
-[👁️ לצפייה בתרשים](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/OlistERD.drawio) | [✏️ לעריכת התרשים](https://app.diagrams.net/#Hnetanelr6%2Fnosql-olist-project%2Fmain%2FOlistERD.drawio)
+[👁️ View Relational Diagram](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/diagrams/OlistERD.drawio) | [✏️ Edit Relational Diagram](https://app.diagrams.net/#Hnetanelr6%2Fnosql-olist-project%2Fmain%2Fdiagrams%2FOlistERD.drawio)
 
 ### Phase 2: SQL DB (PostgreSQL)
 - Implemented the operational database schema in PostgreSQL.
@@ -33,7 +31,9 @@ In the first phase, we established a solid relational foundation:
 - Programmed a Python-based pipeline that reads the SQL database, denormalizes the relations, embeds relevant items, and populates MongoDB.
 
 #### NoSQL ERD Diagram
-[👁️ לצפייה בתרשים ה-NoSQL](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/diagrams/OlistNoSQLERD.drawio) | [✏️ לעריכת תרשים ה-NoSQL](https://app.diagrams.net/#Hnetanelr6%2Fnosql-olist-project%2Fmain%2Fdiagrams%2FOlistNoSQLERD.drawio)
+[![NoSQL ERD Diagram](./diagrams/OlistNoSQLERD.svg)](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/diagrams/OlistNoSQLERD.drawio)
+
+[👁️ View NoSQL Diagram](https://viewer.diagrams.net/?url=https://raw.githubusercontent.com/netanelr6/nosql-olist-project/main/diagrams/OlistNoSQLERD.drawio) | [✏️ Edit NoSQL Diagram](https://app.diagrams.net/#Hnetanelr6%2Fnosql-olist-project%2Fmain%2Fdiagrams%2FOlistNoSQLERD.drawio)
 
 ---
 
