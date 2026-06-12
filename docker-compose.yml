@@ -4,16 +4,22 @@
 # http://localhost:8081
 
 services:
-  # --- עולם ה-NoSQL ---
+  # --- NoSQL Database (MongoDB) ---
   mongodb:
     image: mongo:latest
     container_name: olist_mongodb
     ports:
       - "27017:27017"
     volumes:
-      - ./db_data_mongo:/data/db
+      - ./db_data/mongodb:/data/db
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
+  # --- MongoDB UI Manager ---
   mongo-express:
     image: mongo-express:latest
     container_name: olist_mongo_express
@@ -23,10 +29,30 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongodb
       ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
     restart: unless-stopped
 
-  # --- עולם ה-SQL ---
+  # --- pgAdmin UI Manager for PostgreSQL ---
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: olist_pgadmin
+    ports:
+      - "8082:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@olist.com
+      - PGADMIN_DEFAULT_PASSWORD=pass
+      - PGADMIN_CONFIG_SERVER_MODE=False
+      - PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=False
+    volumes:
+      - ./docker/pgadmin_servers.json:/pgadmin4/servers.json
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+
+  # --- Relational Database (PostgreSQL) ---
   postgres:
     image: postgres:15
     container_name: olist_postgres
@@ -37,5 +63,32 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./db_data_sql:/var/lib/postgresql/data
+      - ./db_data/postgres:/var/lib/postgresql/data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d olist_sql"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # --- Python ETL Pipeline Container ---
+  etl:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.etl
+    container_name: olist_etl
+    environment:
+      - POSTGRES_URI=postgresql://admin:pass@postgres:5432/olist_sql
+      - MONGO_URI=mongodb://mongodb:27017/
+      - KAGGLE_USERNAME=${KAGGLE_USERNAME}
+      - KAGGLE_KEY=${KAGGLE_KEY}
+    volumes:
+      # Mount the data folder so downloaded raw CSV files persist on the host machine
+      - ./data:/app/data
+      # Mount the src folder for live development/updates
+      - ./src:/app/src
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy

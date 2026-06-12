@@ -1,0 +1,15 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Olist Local Postgres",
+      "Group": "Servers",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "olist_sql",
+      "Username": "admin",
+      "Password": "pass",
+      "SSLMode": "prefer",
+      "SavePassword": true
+    }
+  }
+}

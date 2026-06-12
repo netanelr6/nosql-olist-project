@@ -1,0 +1,18 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install system utilities (like postgresql-client to verify connections if needed)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy and install python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the ETL python source code
+COPY src/ ./src/
+
+# Run the pipeline by default
+CMD ["python", "src/main_pipeline.py"]

@@ -9,15 +9,21 @@ def load_csv_to_postgres():
     """
     print("Initializing SQL ingestion process...")
     
-    # Database connection URI for PostgreSQL running inside the Docker network.
-    # Format: postgresql://username:password@container_name:port/database_name
-    db_uri = "postgresql://admin:pass@postgres:5432/olist_sql"
+    # Database connection URI for PostgreSQL.
+    # Checks environment variable or falls back to postgres container name.
+    db_uri = os.environ.get("POSTGRES_URI", "postgresql://admin:pass@postgres:5432/olist_sql")
     engine = create_engine(db_uri)
 
-    data_dir = "data/"
+    # Resolve data directory relative to the script's project root (parent of src/)
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_dir = os.path.join(project_root, "data")
     
     # Identify all CSV files in the data directory
+    if not os.path.exists(data_dir):
+        print(f"Error: Data directory '{data_dir}' does not exist.")
+        return
     csv_files = [f for f in os.listdir(data_dir) if f.endswith('.csv')]
+
 
     if not csv_files:
         print("Error: No CSV files found in the 'data/' directory.")

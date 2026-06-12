@@ -9,6 +9,8 @@ logging.basicConfig(
     handlers=[logging.StreamHandler(sys.stdout)]
 )
 
+import os
+
 def run_script(script_name):
     """
     Executes a Python script as a subprocess and monitors its execution.
@@ -17,16 +19,19 @@ def run_script(script_name):
     Args:
         script_name (str): The filename of the Python script to execute.
     """
-    logging.info(f"Triggering execution of: {script_name}")
+    # Resolve script path relative to this file's folder (src/)
+    script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), script_name)
+    logging.info(f"Triggering execution of: {script_path}")
     try:
         # Run the script. 'check=True' ensures an exception is raised on failure.
         result = subprocess.run(
-            [sys.executable, script_name], 
+            [sys.executable, script_path], 
             check=True, 
             text=True, 
             capture_output=True
         )
         logging.info(f"Successfully completed: {script_name}\nOutput Summary:\n{result.stdout}")
+
     except subprocess.CalledProcessError as e:
         logging.error(f"FATAL ERROR executing {script_name}.\nError Output:\n{e.stderr}")
         sys.exit(1) # Halt the entire pipeline

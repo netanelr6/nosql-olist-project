@@ -5,33 +5,37 @@ import os
 
 def load_data():
     print("Connecting to MongoDB...")
-    # התחברות למונגו (שרץ בדוקר)
-    client = MongoClient("mongodb://localhost:27017/")
+    # Connection to MongoDB (using env var or default)
+    mongo_uri = os.environ.get("MONGO_URI", "mongodb://localhost:27017/")
+    client = MongoClient(mongo_uri)
     
-    # יצירת בסיס הנתונים (או דריסה אם קיים כדי לא לשכפל)
+    # Create or replace database
     client.drop_database('olist_db')
     db = client["olist_db"]
-    data_dir = "data/"
+    
+    # Resolve data directory relative to the script's project root (parent of src/)
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_dir = os.path.join(project_root, "data")
 
-    # פונקציית עזר להמרת DataFrame לפורמט שמונגו אוהב (מעלים NaN ל-null)
+    # Helper function to convert DataFrame to format MongoDB accepts (handling NaN to null)
     def df_to_docs(df):
         return json.loads(df.to_json(orient='records'))
 
     # ---------------------------------------------------------
-    # 1. טעינת אוסף המוצרים (Products) + התרגום לאנגלית
+    # 1. Load Products Collection (with English translations)
     # ---------------------------------------------------------
     print("Loading Products Collection...")
     products = pd.read_csv(os.path.join(data_dir, "olist_products_dataset.csv"))
     translations = pd.read_csv(os.path.join(data_dir, "product_category_name_translation.csv"))
     
     products_merged = pd.merge(products, translations, on="product_category_name", how="left")
-    products_merged['_id'] = products_merged['product_id'] # הגדרת מזהה ראשי
+    products_merged['_id'] = products_merged['product_id'] # Define primary key
     products_merged.drop('product_id', axis=1, inplace=True)
     
     db.products.insert_many(df_to_docs(products_merged))
 
     # ---------------------------------------------------------
-    # 2. טעינת אוסף המוכרים (Sellers) + נתוני גיוס ושיווק
+    # 2. Load Sellers Collection (with marketing funnel details)
     # ---------------------------------------------------------
     print("Loading Sellers Collection (with Onboarding Details)...")
     sellers = pd.read_csv(os.path.join(data_dir, "olist_sellers_dataset.csv"))
@@ -49,7 +53,7 @@ def load_data():
             "state": doc["seller_state"],
             "zip_code_prefix": doc["seller_zip_code_prefix"]
         }
-        # אם יש נתוני משפך (הוטמע מטבלאות השיווק)
+        # Embed marketing funnel details if the seller was onboarded as a lead
         if doc.get("mql_id"):
             seller_doc["onboarding_details"] = {
                 "mql_id": doc["mql_id"],
@@ -63,14 +67,14 @@ def load_data():
     db.sellers.insert_many(sellers_docs)
 
     # ---------------------------------------------------------
-    # 3. טעינת אוסף הביקורות (Reviews)
+    # 3. Load Reviews Collection
     # ---------------------------------------------------------
     print("Loading Reviews Collection...")
     reviews = pd.read_csv(os.path.join(data_dir, "olist_order_reviews_dataset.csv"))
     
-    # קיבוץ ביקורות זהות שקשורות למספר הזמנות שונות
+    # Group identical reviews linked to multiple orders
     reviews_grouped = reviews.groupby("review_id").agg({
-        "order_id": lambda x: list(x), # מערך של references
+        "order_id": lambda x: list(x), # Array of references to orders
         "review_score": "first",
         "review_comment_title": "first",
         "review_comment_message": "first",
@@ -83,7 +87,7 @@ def load_data():
     db.reviews.insert_many(df_to_docs(reviews_grouped))
 
     # ---------------------------------------------------------
-    # 4. טעינת אוסף ההזמנות (Orders) + לקוחות, פריטים ותשלומים
+    # 4. Load Orders Collection (combining customers, items, and payments)
     # ---------------------------------------------------------
     print("Loading Orders Collection (Combining Customers, Items, and Payments)...")
     orders = pd.read_csv(os.path.join(data_dir, "olist_orders_dataset.csv"))
@@ -91,10 +95,10 @@ def load_data():
     items = pd.read_csv(os.path.join(data_dir, "olist_order_items_dataset.csv"))
     payments = pd.read_csv(os.path.join(data_dir, "olist_order_payments_dataset.csv"))
 
-    # חיבור פרטי לקוח להזמנה
+    # Link customer details to the order record
     orders_merged = pd.merge(orders, customers, on="customer_id", how="left")
     
-    # הכנת הפריטים והתשלומים כמילונים (לשליפה מהירה)
+    # Group items and payments by order_id for fast nesting lookup
     items_dict = items.groupby("order_id").apply(lambda x: df_to_docs(x.drop("order_id", axis=1))).to_dict()
     payments_dict = payments.groupby("order_id").apply(lambda x: df_to_docs(x.drop("order_id", axis=1))).to_dict()
 
