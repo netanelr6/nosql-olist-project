@@ -1,14 +1,13 @@
-/* ==============================================================================
-   Olist E-Commerce - HW2 MongoDB Aggregation Queries (Task 4) - OPTIMIZED
-   Description: JavaScript queries to be executed in MongoDB Shell or Mongo Express.
-                These queries correspond to the 5 relational SQL queries from HW1,
-                optimized for the denormalized schema.
-   ============================================================================== */
+# Olist Project - MongoDB (NoSQL) Aggregation Queries
 
-// ------------------------------------------------------------
-// Question 1: Sales Agents Rating by Supplier Quality
-// Mapped Join Path: sellers -> orders (onboarding_details, embedded items & reviews)
-// ------------------------------------------------------------
+This document contains the complete set of optimized MongoDB aggregation queries used in the project, designed to run against the denormalized database schema.
+
+---
+
+## 📂 Query 1: Sales Representative (SR) Performance (HR Analysis)
+Find the top 5 sales representatives (SDR/SR) who onboarded sellers with the highest average review scores (for reps with more than 10 reviews).
+
+```json
 db.sellers.aggregate([
   {
     "$match": {
@@ -62,12 +61,15 @@ db.sellers.aggregate([
       "avg_review_score": { "$round": ["$avg_review_score", 2] }
     }
   }
-]);
+])
+```
 
-// ------------------------------------------------------------
-// Question 2: Product Categories with Negative Reviews
-// Mapped Join Path: orders (Zero Joins! Categories embedded in items, reviews embedded)
-// ------------------------------------------------------------
+---
+
+## 📂 Query 2: Product Categories with High Negative Reviews
+Identify the top 5 product categories with the highest percentage of negative reviews (scores of 1 or 2), alongside the average price of products in those categories (for categories with over 50 reviews).
+
+```json
 db.orders.aggregate([
   { "$unwind": "$reviews" },
   { "$unwind": "$items" },
@@ -118,12 +120,15 @@ db.orders.aggregate([
   },
   { "$sort": { "negative_reviews_percentage": -1 } },
   { "$limit": 5 }
-]);
+])
+```
 
-// ------------------------------------------------------------
-// Question 3: ROI of Marketing Channels
-// Mapped Join Path: sellers -> orders
-// ------------------------------------------------------------
+---
+
+## 📂 Query 3: ROI of Marketing Funnel Channels
+Find the total revenue generated and the count of unique recruited sellers for each marketing channel lead origin.
+
+```json
 db.sellers.aggregate([
   {
     "$match": {
@@ -161,12 +166,15 @@ db.sellers.aggregate([
     }
   },
   { "$sort": { "total_revenue_generated": -1 } }
-]);
+])
+```
 
-// ------------------------------------------------------------
-// Question 4: Impact of Delivery Delays on Satisfaction
-// Mapped Join Path: orders (Zero Joins! Reviews embedded in orders, pre-parsed BSON Dates)
-// ------------------------------------------------------------
+---
+
+## 📂 Query 4: Impact of Shipping Delays on Review Scores
+Compare average review scores for orders that were delivered on-time or early vs. orders delivered late.
+
+```json
 db.orders.aggregate([
   {
     "$match": {
@@ -206,12 +214,15 @@ db.orders.aggregate([
       "avg_review_score": { "$round": ["$avg_review_score", 2] }
     }
   }
-]);
+])
+```
 
-// ------------------------------------------------------------
-// Question 5: Geographical Shipping Bottlenecks
-// Mapped Join Path: orders (Zero Joins!)
-// ------------------------------------------------------------
+---
+
+## 📂 Query 5: Geographical Shipping Cost Analysis
+Identify states in Brazil where the total shipping freight cost exceeds 30% of the total product value.
+
+```json
 db.orders.aggregate([
   { "$unwind": "$items" },
   {
@@ -253,4 +264,5 @@ db.orders.aggregate([
     }
   },
   { "$sort": { "freight_to_price_percentage": -1 } }
-]);
+])
+```
