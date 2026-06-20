@@ -23,7 +23,7 @@
 
   <!-- Collection: orders -->
   <g filter="url(#shadow)">
-    <rect x="60" y="60" width="400" height="524" rx="8" fill="#F8F9FA" stroke="#BDC1C6" stroke-width="1" />
+    <rect x="60" y="60" width="400" height="546" rx="8" fill="#F8F9FA" stroke="#BDC1C6" stroke-width="1" />
     <!-- Header -->
     <path d="M 61 92 L 61 68 A 8 8 0 0 1 68 60 L 452 60 A 8 8 0 0 1 459 68 L 459 92 Z" fill="#1A73E8" />
     <text x="260.0" y="82" fill="#FFFFFF" font-size="15" font-weight="bold" text-anchor="middle">ORDERS</text>
@@ -329,23 +329,36 @@
       <!-- Subtle row separator -->
       <line x1="68" y1="575" x2="452" y2="575" stroke="#F1F3F4" stroke-width="1" />
     </g>
+    <!-- Row 22: reviews -->
+    <g>
+      <!-- Key column -->
+      <text x="75" y="591" fill="none" font-size="11" font-weight="bold"></text>
+      
+      <!-- Name column -->
+      <text x="115" y="591" fill="#202124" font-size="12" font-weight="normal">reviews</text>
+      <!-- Type column -->
+      <text x="445" y="591" fill="#5F6368" font-size="11" text-anchor="end">Array&lt;Object&gt;</text>
+      
+      <!-- Subtle row separator -->
+      <line x1="68" y1="597" x2="452" y2="597" stroke="#F1F3F4" stroke-width="1" />
+    </g>
   <!-- Collection: reviews -->
   <g filter="url(#shadow)">
-    <rect x="60" y="600" width="400" height="172" rx="8" fill="#F8F9FA" stroke="#BDC1C6" stroke-width="1" />
+    <rect x="60" y="630" width="400" height="172" rx="8" fill="#F8F9FA" stroke="#BDC1C6" stroke-width="1" />
     <!-- Header -->
-    <path d="M 61 632 L 61 608 A 8 8 0 0 1 68 600 L 452 600 A 8 8 0 0 1 459 608 L 459 632 Z" fill="#1A73E8" />
-    <text x="260.0" y="622" fill="#FFFFFF" font-size="15" font-weight="bold" text-anchor="middle">REVIEWS</text>
+    <path d="M 61 662 L 61 638 A 8 8 0 0 1 68 630 L 452 630 A 8 8 0 0 1 459 638 L 459 662 Z" fill="#1A73E8" />
+    <text x="260.0" y="652" fill="#FFFFFF" font-size="15" font-weight="bold" text-anchor="middle">REVIEWS</text>
   </g>
 
     <!-- Row 0: _id -->
     <g>
       <!-- Key column -->
-      <text x="75" y="647" fill="#D93025" font-size="11" font-weight="bold">PK</text>
+      <text x="75" y="677" fill="#D93025" font-size="11" font-weight="bold">PK</text>
       
       <!-- Name column -->
-      <text x="115" y="647" fill="#202124" font-size="12" font-weight="bold">_id</text>
+      <text x="115" y="677" fill="#202124" font-size="12" font-weight="bold">_id</text>
       <!-- Type column -->
-      <text x="445" y="647" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      <text x="445" y="677" fill="#5F6368" font-size="11" text-anchor="end">String</text>
       
       <!-- Subtle row separator -->
       <line x1="68" y1="653" x2="452" y2="653" stroke="#F1F3F4" stroke-width="1" />
@@ -353,12 +366,12 @@
     <!-- Row 1: order_id -->
     <g>
       <!-- Key column -->
-      <text x="75" y="669" fill="#D93025" font-size="11" font-weight="bold">FK</text>
+      <text x="75" y="699" fill="#D93025" font-size="11" font-weight="bold">FK</text>
       
       <!-- Name column -->
-      <text x="115" y="669" fill="#202124" font-size="12" font-weight="normal">order_id</text>
+      <text x="115" y="699" fill="#202124" font-size="12" font-weight="normal">order_id</text>
       <!-- Type column -->
-      <text x="445" y="669" fill="#5F6368" font-size="11" text-anchor="end">Array&lt;String&gt;</text>
+      <text x="445" y="699" fill="#5F6368" font-size="11" text-anchor="end">Array&lt;String&gt;</text>
       
       <!-- Subtle row separator -->
       <line x1="68" y1="675" x2="452" y2="675" stroke="#F1F3F4" stroke-width="1" />
@@ -366,12 +379,12 @@
     <!-- Row 2: review_score -->
     <g>
       <!-- Key column -->
-      <text x="75" y="691" fill="none" font-size="11" font-weight="bold"></text>
+      <text x="75" y="721" fill="none" font-size="11" font-weight="bold"></text>
       
       <!-- Name column -->
-      <text x="115" y="691" fill="#202124" font-size="12" font-weight="normal">review_score</text>
+      <text x="115" y="721" fill="#202124" font-size="12" font-weight="normal">review_score</text>
       <!-- Type column -->
-      <text x="445" y="691" fill="#5F6368" font-size="11" text-anchor="end">Int</text>
+      <text x="445" y="721" fill="#5F6368" font-size="11" text-anchor="end">Int</text>
       
       <!-- Subtle row separator -->
       <line x1="68" y1="697" x2="452" y2="697" stroke="#F1F3F4" stroke-width="1" />
@@ -379,12 +392,12 @@
     <!-- Row 3: review_comment_title -->
     <g>
       <!-- Key column -->
-      <text x="75" y="713" fill="none" font-size="11" font-weight="bold"></text>
+      <text x="75" y="743" fill="none" font-size="11" font-weight="bold"></text>
       
       <!-- Name column -->
-      <text x="115" y="713" fill="#202124" font-size="12" font-weight="normal">review_comment_title</text>
+      <text x="115" y="743" fill="#202124" font-size="12" font-weight="normal">review_comment_title</text>
       <!-- Type column -->
-      <text x="445" y="713" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      <text x="445" y="743" fill="#5F6368" font-size="11" text-anchor="end">String</text>
       
       <!-- Subtle row separator -->
       <line x1="68" y1="719" x2="452" y2="719" stroke="#F1F3F4" stroke-width="1" />
@@ -392,12 +405,12 @@
     <!-- Row 4: review_comment_message -->
     <g>
       <!-- Key column -->
-      <text x="75" y="735" fill="none" font-size="11" font-weight="bold"></text>
+      <text x="75" y="765" fill="none" font-size="11" font-weight="bold"></text>
       
       <!-- Name column -->
-      <text x="115" y="735" fill="#202124" font-size="12" font-weight="normal">review_comment_message</text>
+      <text x="115" y="765" fill="#202124" font-size="12" font-weight="normal">review_comment_message</text>
       <!-- Type column -->
-      <text x="445" y="735" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      <text x="445" y="765" fill="#5F6368" font-size="11" text-anchor="end">String</text>
       
       <!-- Subtle row separator -->
       <line x1="68" y1="741" x2="452" y2="741" stroke="#F1F3F4" stroke-width="1" />
@@ -405,12 +418,12 @@
     <!-- Row 5: review_creation_date -->
     <g>
       <!-- Key column -->
-      <text x="75" y="757" fill="none" font-size="11" font-weight="bold"></text>
+      <text x="75" y="787" fill="none" font-size="11" font-weight="bold"></text>
       
       <!-- Name column -->
-      <text x="115" y="757" fill="#202124" font-size="12" font-weight="normal">review_creation_date</text>
+      <text x="115" y="787" fill="#202124" font-size="12" font-weight="normal">review_creation_date</text>
       <!-- Type column -->
-      <text x="445" y="757" fill="#5F6368" font-size="11" text-anchor="end">String</text>
+      <text x="445" y="787" fill="#5F6368" font-size="11" text-anchor="end">String</text>
       
       <!-- Subtle row separator -->
       <line x1="68" y1="763" x2="452" y2="763" stroke="#F1F3F4" stroke-width="1" />
@@ -660,7 +673,7 @@
   <!-- Relationship: reviews.order_id -> orders._id -->
   <g>
     <!-- Start at reviews.order_id (x=460, y=669) -->
-    <path d="M 460 637 C 500 637, 500 107, 468 107" fill="none" stroke="#1A73E8" stroke-width="2" stroke-dasharray="2,2" marker-start="url(#dot)" marker-end="url(#arrow)" />
+    <path d="M 460 667 C 500 667, 500 107, 468 107" fill="none" stroke="#1A73E8" stroke-width="2" stroke-dasharray="2,2" marker-start="url(#dot)" marker-end="url(#arrow)" />
     <text x="510" y="372" fill="#1A73E8" font-size="11" font-weight="bold" transform="rotate(-90 510 372)" text-anchor="middle">references order_id</text>
   </g>
 
