@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL vs NoSQL (MongoDB) - השוואת ביצועים מהירה</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Load Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-decor"></div>
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="main-header">
+            <h1 class="main-title">השוואת ביצועים בזמן אמת: SQL (PostgreSQL) מול NoSQL (MongoDB)</h1>
+            <p class="subtitle">פרויקט ניתוח מאגר Olist E-Commerce | נתנאל רחום</p>
+        </header>
+
+        <!-- Selector Card -->
+        <section class="selector-card">
+            <label for="query-select" class="selector-label">בחר שאילתה לניתוח והשוואה:</label>
+            <div class="custom-select-wrapper">
+                <select id="query-select" class="custom-select">
+                    {% for q_id, q_data in queries.items() %}
+                        <option value="{{ q_id }}">{{ q_data.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button id="btn-compare" class="btn btn-primary btn-spark">
+                <span>הרצת השוואה סימולטנית ⚡</span>
+            </button>
+        </section>
+
+        <!-- Side-by-Side Playground -->
+        <div class="comparison-grid">
+            
+            <!-- SQL Panel -->
+            <div class="db-panel sql-panel">
+                <div class="panel-header">
+                    <div class="db-badge sql-badge">🐘 PostgreSQL (SQL)</div>
+                    <button id="btn-run-sql" class="btn btn-small btn-sql">הרץ SQL</button>
+                </div>
+                
+                <div class="code-container">
+                    <label class="code-label">קוד השאילתה (SQL):</label>
+                    <textarea id="sql-code" class="code-editor" spellcheck="false"></textarea>
+                </div>
+
+                <!-- Metrics Box -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-val" id="sql-time">-</span>
+                        <span class="metric-label">זמן ריצה (ms)</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-val" id="sql-rows">-</span>
+                        <span class="metric-label">רשומות שהוחזרו</span>
+                    </div>
+                </div>
+
+                <!-- Results Output -->
+                <div class="results-container">
+                    <h3 class="section-title">פלט השאילתה:</h3>
+                    <div id="sql-results-wrapper" class="table-wrapper">
+                        <p class="empty-state">הרכב שאילתה והרץ לקבלת פלט...</p>
+                    </div>
+                </div>
+
+                <!-- Explain Plan -->
+                <div class="explain-container">
+                    <button class="accordion-header" onclick="toggleAccordion('sql-explain')">
+                        <span>עומס מערכת והסבר שאילתה (Postgres EXPLAIN ANALYZE)</span>
+                        <span class="accordion-arrow">▼</span>
+                    </button>
+                    <div id="sql-explain" class="accordion-content">
+                        <pre id="sql-explain-text" class="explain-raw">הרץ את השאילתה כדי לראות את תוכנית הביצוע של השרת...</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MongoDB Panel -->
+            <div class="db-panel mongo-panel">
+                <div class="panel-header">
+                    <div class="db-badge mongo-badge">🍃 MongoDB (NoSQL)</div>
+                    <button id="btn-run-mongo" class="btn btn-small btn-mongo">הרץ MongoDB</button>
+                </div>
+
+                <div class="code-container">
+                    <div class="mongo-collection-info">
+                        <span class="col-label">אוסף מטרה:</span>
+                        <span class="col-val" id="mongo-target-collection">reviews</span>
+                    </div>
+                    <label class="code-label">צינור אגרגציה (JSON Aggregation Pipeline):</label>
+                    <textarea id="mongo-code" class="code-editor" spellcheck="false"></textarea>
+                </div>
+
+                <!-- Metrics Box -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-val" id="mongo-time">-</span>
+                        <span class="metric-label">זמן ריצה (ms)</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-val" id="mongo-docs-examined">-</span>
+                        <span class="metric-label">מסמכים שנסרקו</span>
+                    </div>
+                </div>
+
+                <!-- Results Output -->
+                <div class="results-container">
+                    <h3 class="section-title">פלט השאילתה (JSON):</h3>
+                    <div id="mongo-results-wrapper" class="json-wrapper">
+                        <p class="empty-state">הרכב שאילתה והרץ לקבלת פלט...</p>
+                    </div>
+                </div>
+
+                <!-- Explain Plan -->
+                <div class="explain-container">
+                    <button class="accordion-header" onclick="toggleAccordion('mongo-explain')">
+                        <span>עומס מערכת ומדדי סריקה (MongoDB explain Stats)</span>
+                        <span class="accordion-arrow">▼</span>
+                    </button>
+                    <div id="mongo-explain" class="accordion-content">
+                        <div class="mongo-stats-summary">
+                            <div><strong>סך הכל מפתחות אינדקס שנסרקו:</strong> <span id="mongo-keys-examined-stat">0</span></div>
+                            <div><strong>סך הכל מסמכים שנסרקו:</strong> <span id="mongo-docs-examined-stat">0</span></div>
+                            <div><strong>זמן ביצוע פנימי בשרת:</strong> <span id="mongo-internal-time-stat">0</span> ms</div>
+                        </div>
+                        <pre id="mongo-explain-text" class="explain-raw">הרץ את השאילתה כדי לראות את תוכנית הביצוע של השרת...</pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Comparative Chart Section -->
+        <section class="comparison-summary-card" id="summary-card" style="display: none;">
+            <h2 class="summary-title">תוצאות השוואה מהירה</h2>
+            <div class="summary-content">
+                <div class="speedup-gauge">
+                    <div class="speedup-val" id="speedup-factor">0x</div>
+                    <div class="speedup-desc" id="speedup-text">השוואה מהירה</div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-bar-wrapper">
+                        <span class="bar-label">PostgreSQL</span>
+                        <div class="bar-bg">
+                            <div class="bar-fill sql-fill" id="bar-sql" style="width: 100%;"></div>
+                        </div>
+                        <span class="bar-time" id="bar-sql-time">0 ms</span>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <span class="bar-label">MongoDB</span>
+                        <div class="bar-bg">
+                            <div class="bar-fill mongo-fill" id="bar-mongo" style="width: 100%;"></div>
+                        </div>
+                        <span class="bar-time" id="bar-mongo-time">0 ms</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS Logic -->
+    <script>
+        let queriesData = {};
+
+        // Load Predefined Queries
+        async function loadQueries() {
+            try {
+                const response = await fetch('/api/queries');
+                queriesData = await response.json();
+                updateEditors(document.getElementById('query-select').value);
+            } catch (err) {
+                console.error("Error loading queries:", err);
+            }
+        }
+
+        function updateEditors(queryId) {
+            const query = queriesData[queryId];
+            if (!query) return;
+
+            document.getElementById('sql-code').value = query.sql;
+            document.getElementById('mongo-code').value = JSON.stringify(query.mongo_pipeline, null, 2);
+            document.getElementById('mongo-target-collection').textContent = query.mongo_collection;
+            
+            // Clear outputs
+            document.getElementById('sql-time').textContent = "-";
+            document.getElementById('sql-rows').textContent = "-";
+            document.getElementById('sql-results-wrapper').innerHTML = '<p class="empty-state">לחץ הרץ להצגת פלט...</p>';
+            document.getElementById('sql-explain-text').textContent = "הרץ את השאילתה כדי לראות את תוכנית הביצוע של השרת...";
+
+            document.getElementById('mongo-time').textContent = "-";
+            document.getElementById('mongo-docs-examined').textContent = "-";
+            document.getElementById('mongo-results-wrapper').innerHTML = '<p class="empty-state">לחץ הרץ להצגת פלט...</p>';
+            document.getElementById('mongo-explain-text').textContent = "הרץ את השאילתה כדי לראות את תוכנית הביצוע של השרת...";
+            document.getElementById('mongo-keys-examined-stat').textContent = "0";
+            document.getElementById('mongo-docs-examined-stat').textContent = "0";
+            document.getElementById('mongo-internal-time-stat').textContent = "0";
+
+            document.getElementById('summary-card').style.display = 'none';
+        }
+
+        document.getElementById('query-select').addEventListener('change', (e) => {
+            updateEditors(e.target.value);
+        });
+
+        // Run SQL
+        async function runSql() {
+            const queryId = document.getElementById('query-select').value;
+            const code = document.getElementById('sql-code').value;
+            const btn = document.getElementById('btn-run-sql');
+            
+            btn.disabled = true;
+            btn.textContent = "מריץ...";
+            
+            document.getElementById('sql-results-wrapper').innerHTML = '<div class="loader-spinner"></div>';
+            
+            try {
+                const res = await fetch('/api/run', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query_id: queryId, db_type: 'sql', custom_code: code })
+                });
+                
+                const data = await res.json();
+                btn.disabled = false;
+                btn.textContent = "הרץ SQL";
+
+                if (data.success) {
+                    document.getElementById('sql-time').textContent = data.execution_time_ms.toFixed(1);
+                    document.getElementById('sql-rows').textContent = data.rows_returned;
+                    document.getElementById('sql-explain-text').textContent = data.explain_plan;
+
+                    // Build table HTML
+                    if (data.output.length === 0) {
+                        document.getElementById('sql-results-wrapper').innerHTML = '<p class="empty-state">השאילתה הושלמה בהצלחה, אך לא חזרו שורות.</p>';
+                    } else {
+                        let html = '<table><thead><tr>';
+                        data.columns.forEach(col => {
+                            html += `<th>${col}</th>`;
+                        });
+                        html += '</tr></thead><tbody>';
+                        data.output.forEach(row => {
+                            html += '<tr>';
+                            data.columns.forEach(col => {
+                                html += `<td>${row[col] !== null ? row[col] : 'NULL'}</td>`;
+                            });
+                            html += '</tr>';
+                        });
+                        html += '</tbody></table>';
+                        document.getElementById('sql-results-wrapper').innerHTML = html;
+                    }
+                    return data.execution_time_ms;
+                } else {
+                    document.getElementById('sql-results-wrapper').innerHTML = `<p class="error-state">שגיאה: ${data.error}</p>`;
+                    return null;
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.textContent = "הרץ SQL";
+                document.getElementById('sql-results-wrapper').innerHTML = `<p class="error-state">שגיאת רשת: ${err}</p>`;
+                return null;
+            }
+        }
+
+        // Run MongoDB
+        async function runMongo() {
+            const queryId = document.getElementById('query-select').value;
+            const code = document.getElementById('mongo-code').value;
+            const btn = document.getElementById('btn-run-mongo');
+            
+            btn.disabled = true;
+            btn.textContent = "מריץ...";
+            
+            document.getElementById('mongo-results-wrapper').innerHTML = '<div class="loader-spinner"></div>';
+            
+            try {
+                const res = await fetch('/api/run', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query_id: queryId, db_type: 'mongodb', custom_code: code })
+                });
+                
+                const data = await res.json();
+                btn.disabled = false;
+                btn.textContent = "הרץ MongoDB";
+
+                if (data.success) {
+                    document.getElementById('mongo-time').textContent = data.execution_time_ms.toFixed(1);
+                    
+                    const explain = data.explain_plan;
+                    const docsExamined = explain.totalDocsExamined !== undefined ? explain.totalDocsExamined : "-";
+                    document.getElementById('mongo-docs-examined').textContent = docsExamined;
+                    document.getElementById('mongo-explain-text').textContent = explain.raw || JSON.stringify(explain, null, 2);
+                    
+                    document.getElementById('mongo-keys-examined-stat').textContent = explain.totalKeysExamined || 0;
+                    document.getElementById('mongo-docs-examined-stat').textContent = explain.totalDocsExamined || 0;
+                    document.getElementById('mongo-internal-time-stat').textContent = explain.executionTimeMillis || 0;
+
+                    if (data.output.length === 0) {
+                        document.getElementById('mongo-results-wrapper').innerHTML = '<p class="empty-state">האגרגציה הושלמה בהצלחה, אך לא חזרו מסמכים.</p>';
+                    } else {
+                        document.getElementById('mongo-results-wrapper').innerHTML = `<pre class="json-output">${JSON.stringify(data.output, null, 2)}</pre>`;
+                    }
+                    return data.execution_time_ms;
+                } else {
+                    document.getElementById('mongo-results-wrapper').innerHTML = `<p class="error-state">שגיאה: ${data.error}</p>`;
+                    return null;
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.textContent = "הרץ MongoDB";
+                document.getElementById('mongo-results-wrapper').innerHTML = `<p class="error-state">שגיאת רשת: ${err}</p>`;
+                return null;
+            }
+        }
+
+        // Run both and compare
+        async function comparePerformance() {
+            const btn = document.getElementById('btn-compare');
+            btn.disabled = true;
+            btn.classList.add('loading');
+            
+            // Run both in parallel
+            const [sqlTime, mongoTime] = await Promise.all([runSql(), runMongo()]);
+            
+            btn.disabled = false;
+            btn.classList.remove('loading');
+
+            if (sqlTime !== null && mongoTime !== null) {
+                displayComparison(sqlTime, mongoTime);
+            }
+        }
+
+        function displayComparison(sqlTime, mongoTime) {
+            const card = document.getElementById('summary-card');
+            card.style.display = 'block';
+
+            const maxTime = Math.max(sqlTime, mongoTime);
+            
+            // Calculate bars width percentage
+            const sqlWidth = Math.max((sqlTime / maxTime) * 100, 3);
+            const mongoWidth = Math.max((mongoTime / maxTime) * 100, 3);
+            
+            document.getElementById('bar-sql').style.width = `${sqlWidth}%`;
+            document.getElementById('bar-mongo').style.width = `${mongoWidth}%`;
+            
+            document.getElementById('bar-sql-time').textContent = `${sqlTime.toFixed(1)} ms`;
+            document.getElementById('bar-mongo-time').textContent = `${mongoTime.toFixed(1)} ms`;
+
+            const factorText = document.getElementById('speedup-factor');
+            const descText = document.getElementById('speedup-text');
+            
+            if (sqlTime > mongoTime) {
+                const ratio = sqlTime / mongoTime;
+                factorText.textContent = `${ratio.toFixed(1)}x`;
+                factorText.style.color = '#10b981'; // Green for MongoDB speedup
+                descText.innerHTML = `<strong>MongoDB מהירה יותר!</strong><br>השאילתה רצה מהר יותר ב-MongoDB מאשר ב-PostgreSQL.`;
+            } else if (mongoTime > sqlTime) {
+                const ratio = mongoTime / sqlTime;
+                factorText.textContent = `${ratio.toFixed(1)}x`;
+                factorText.style.color = '#3b82f6'; // Blue for SQL speedup
+                descText.innerHTML = `<strong>PostgreSQL מהירה יותר!</strong><br>השאילתה רצה מהר יותר ב-PostgreSQL מאשר ב-MongoDB.`;
+            } else {
+                factorText.textContent = `1.0x`;
+                factorText.style.color = '#fff';
+                descText.textContent = `שתי המערכות רצו במהירות זהה.`;
+            }
+            
+            // Smooth scroll to summary card
+            card.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Accordion utility
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('active');
+            const arrow = content.previousElementSibling.querySelector('.accordion-arrow');
+            if (content.classList.contains('active')) {
+                arrow.textContent = "▲";
+            } else {
+                arrow.textContent = "▼";
+            }
+        }
+
+        document.getElementById('btn-run-sql').addEventListener('click', runSql);
+        document.getElementById('btn-run-mongo').addEventListener('click', runMongo);
+        document.getElementById('btn-compare').addEventListener('click', comparePerformance);
+
+        // Run on startup
+        window.addEventListener('DOMContentLoaded', loadQueries);
+    </script>
+</body>
+</html>

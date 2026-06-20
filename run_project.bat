@@ -42,9 +42,11 @@ if %errorlevel% neq 0 (
 
 echo.
 echo ==============================================================================
-echo Execution complete. Database GUI managers are now active:
-echo  - PostgreSQL pgAdmin 4: http://localhost:8082
-echo  - MongoDB Express:    http://localhost:8081
+echo Execution complete. Web managers and comparison dashboard are now active:
+echo  - SQL vs NoSQL Dashboard: http://localhost:8083
+echo  - PostgreSQL pgAdmin 4:   http://localhost:8082
+echo  - MongoDB Express:        http://localhost:8081
 echo ==============================================================================
 echo.
 pause
+

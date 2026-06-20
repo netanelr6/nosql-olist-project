@@ -94,3 +94,24 @@ services:
         condition: service_healthy
       mongodb:
         condition: service_healthy
+
+  # --- Python SQL vs NoSQL Dashboard ---
+  dashboard:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.etl
+    container_name: olist_dashboard
+    ports:
+      - "8083:8083"
+    environment:
+      - POSTGRES_URI=postgresql://admin:pass@postgres:5432/olist_sql
+      - MONGO_URI=mongodb://mongodb:27017/
+    volumes:
+      - ./data:/app/data
+      - ./src:/app/src
+    command: ["python", "src/dashboard/app.py"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
