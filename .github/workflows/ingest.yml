@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main # Trigger pipeline on git push to the main branch
-  workflow_dispatch: # Allows manual trigger from the GitHub Actions UI
+  workflow_dispatch: #  Allows manual trigger from the GitHub Actions UI
 
 jobs:
   ingest_data:
